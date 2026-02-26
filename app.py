@@ -16,13 +16,7 @@ def crop_image(image):
     if not contours:
         return image
     
-    c = max(contours, key=cv2.contourArea)
-    extLeft = tuple(c[c[:, :, 0].argmin()])[0]
-    extRight = tuple(c[c[:, :, 0].argmax()])[0]
-    extTop = tuple(c[c[:, :, 1].argmin()])[0]
-    extBottom = tuple(c[c[:, :, 1].argmax()])[0]
     
-    new_img = image[extTop[1]:extBottom[1], extLeft[0]:extRight[0]]
     return new_img
 
 def preprocess_image(upload):
@@ -90,3 +84,4 @@ def main():
 if __name__ == '__main__':
 
     main()
+
