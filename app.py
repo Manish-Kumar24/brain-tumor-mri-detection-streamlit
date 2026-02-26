@@ -12,14 +12,6 @@ def load_model():
     return tf.keras.models.load_model('model.keras')
 
 def crop_image(image):
-    img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    img_blur = cv2.GaussianBlur(img_gray, (5, 5), 0)
-    img_thresh = cv2.threshold(img_blur, 45, 255, cv2.THRESH_BINARY)[1]
-    img_thresh = cv2.erode(img_thresh, None, iterations=2)
-    img_thresh = cv2.dilate(img_thresh, None, iterations=2)
-    
-    contours = cv2.findContours(img_thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    contours = imutils.grab_contours(contours)
     
     if not contours:
         return image
@@ -96,4 +88,5 @@ def main():
                     st.write(f"{class_name}: {float(prob)*100:.2f}%")
 
 if __name__ == '__main__':
+
     main()
